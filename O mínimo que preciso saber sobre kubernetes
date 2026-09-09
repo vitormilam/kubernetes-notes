@@ -1,0 +1,13 @@
+# O mínimo que preciso saber sobre kubernetes
+
+O que é um pod ?
+- É a menor unidade do Kubernetes.
+- Você pode ter um ou mais containers dentro de um pod.
+
+## Recursos de workload 
+- Gerencia os pods para mim.
+- Quais são os recursos ?
+    - replicaSet (Números de pods) 
+    - deployment (Gerencia ReplicaSet) -> Mais usado 
+    - statefulSet
+    - DaemonSet
