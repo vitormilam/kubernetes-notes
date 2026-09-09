@@ -1,0 +1,80 @@
+# Seção 2 - Introdução ao Kubernetes
+
+## Revisão sobre Containers
+
+- Containers são uma maneira de criar ambientes isolados que podem executar código enquanto compartilham um único sistemas operacional.
+- Cada container é completamente isolado dos outros.
+
+## Revisão sobre Docker
+
+- Gerenciar containers é uma tarefa díficil.
+- O Docker é uma ferramenta que deixa a tarefa de gerenciar containers muito mais fácil.
+- Docker Engine = Aplicação que gerencia containers por trás dos panos.
+  - É uma interface que vai fazer a comunicação entre o Sistema Operacional e os Containers criados.
+
+- Hardware -> OS -> Docker Engine -> Containers
+
+# Revisão sobre YAML
+
+- A linguagem YAML que faz parte do core do Docker, Kubernetes e tantas outras ferramentas.
+- Desta forma, conhecendo como funciona esta línguagem, evita-se vários problemas comuns aos usuários iniciantes.
+- As estruturas de dados mais comuns:
+  - Key Value Pair
+  - Array / Lists
+  - Dictionary / Map
+
+# Introdução á Kubernetes (K8S)
+
+- É uma solução para ORQUESTRAÇÃO  de containers.
+- Fazendo uso do Kubernetes, a medida que sua aplicação vai recebendo mais acessos, novos "nodes" são criados, e se a aplicação 
+tiver menos acessos, estes "nodes" extras são destruídos, fazendo que tenhamos mais flexibilidade.
+
+## Arquitetura do Kubernetes
+
+- Componentes principais: Node, Cluster e Master.
+
+NODE
+- Um node é uma máquina, física ou virtual, onde o Kubernetes está instalado.
+- No node criamos containers (con docker) com as nossas aplicações.
+
+CLUSTER
+- Um cluster é um conjunto de  nodes agrupados.
+- Mesmo que um node falhe, a aplicação continua sendo acessada através de outros nodes.
+
+Master
+- O Master é um node que é o verdadeiro responsável pela orquestração dos containers.
+- Os nodes que não são "master" são chamados de Worker Nodes.
+
+
+## Componentes do Kubernetes
+
+API-Server
+- A API Server funciona como um frontend para o Kubernetes.
+- É através dele que fazemos uso do gerenciamento de usuários, dispositivos, interface de linha de comando.
+
+etcd
+- etcd é usado para armazenar dados, de forma distribuída, no formato chave - valor para configuração e gerenciamento dos clusters.
+- Sim, podemos ter múltiplos clusters e cada cluster com seu master, e o etcd guardando dados de forma distribuída nos nodes.
+- Além disso, os logs dos clusters são gravados aqui.
+
+Scheduler
+- O Scheduler (agendador) é responsável por distribuir o trabalho para os containers através dos múltiplos nodes.
+- Ele também "busca" por novos containers criados e anexa eles aos nodes.
+
+Controller
+- O Controller é o cerebro por traz da orquestração.
+- Ele é responsável por tomar as decisões quando um node falha ou apresenta problemas e pode ativar novos nodes para substituir os problemáticos.
+
+Container Runtime
+- O Container runtime faz interface com software usado para criação dos containers, no nosso caso, o docker engine, mas pode ser utilizado com outros softwares com o mesmo propósito.
+
+kubelet
+- O Kubelet é o agent que é executado em cada node em um cluster.
+- O agent é responsável por checar se os containers estão sendo executando no node conforme o esperado.
+
+
+# Diferença entre Master e Worker node
+
+Master = API-server, etcd, controller, scheduler.
+Worker node = kubelet, container runtime.
+
